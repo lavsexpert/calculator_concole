@@ -8,7 +8,8 @@ public class Calculator {
         int number1 = getNumber();
         char operation = getOperation();
         int number2 = getNumber();
-        showResult(number1, operation, number2);
+        int result = getResult(number1, operation, number2);
+        System.out.println("Результат: " + result);
     }
 
     private static int getNumber(){
@@ -37,18 +38,17 @@ public class Calculator {
         return operation;
     }
 
-    private static void showResult(int number1, char operation, int number2){
-        if(operation == '+'){
-            System.out.println("Результат: " + (number1 + number2));
-        } else if (operation == '-'){
-            System.out.println("Результат: " + (number1 - number2));
-        } else if (operation == '*'){
-            System.out.println("Результат: " + (number1 * number2));
-        } else if (operation == '/'){
-            System.out.println("Результат: " + (number1 / number2));
-        } else {
-            System.out.println("Результат неизвестен из-за неизвестной операции: " + operation);
+    private static int getResult(int number1, char operation, int number2){
+        int result;
+        switch (operation){
+            case '+': result = number1 + number2; break;
+            case '-': result = number1 - number2; break;
+            case '*': result = number1 * number2; break;
+            case '/': result = number1 / number2; break;
+            default:
+                System.out.println("Операция не распознана. Попробуйте снова.");
+                result = getResult(number1, getOperation(), number2);
         }
+        return result;
     }
-
 }
