@@ -3,14 +3,18 @@ import java.util.Scanner;
 public class CalculatorView {
     private static Scanner scanner = new Scanner(System.in);
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws Exception {
         int number1 = getNumber();
         char operation = getOperation();
         int number2 = getNumber();
 
         Calculator calc = new Calculator();
-        int result = calc.getResult(number1, operation, number2);
-        System.out.println("Результат: " + result);
+        try {
+            int result = calc.getResult(number1, operation, number2);
+            System.out.println("Результат: " + result);
+        } catch (Exception e){
+            System.out.println("Не удалось посчитать по причине:\n" + e.getMessage());
+        }
     }
 
     public static int getNumber(){
