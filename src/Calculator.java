@@ -13,12 +13,28 @@ public class Calculator {
 
     private static int getNumber(){
         System.out.println("Введите число:");
-        return scanner.nextInt();
+        int num;
+        if (scanner.hasNextInt()){
+            num = scanner.nextInt();
+        } else {
+            System.out.println("Ошибка при вводе числа. Попробуйте снова.");
+            scanner.next();
+            num = getNumber();
+        }
+        return num;
     }
 
     private static char getOperation(){
         System.out.println("Введите операцию(+,-,*,/):");
-        return scanner.next().charAt(0);
+        char operation;
+        if (scanner.hasNext()){
+            operation = scanner.next().charAt(0);
+        } else {
+            System.out.println("Ошибка при вводе операции. Попробуйте снова.");
+            scanner.next();
+            operation = getOperation();
+        }
+        return operation;
     }
 
     private static void showResult(int number1, char operation, int number2){
